@@ -37,6 +37,8 @@ const Import = props => {
           Import
         </Button>
 
+        <h2>Count: {props.makes.length}</h2>
+
         <Table className={classes.makesTable}>
           <TableHead>
             <TableRow>
