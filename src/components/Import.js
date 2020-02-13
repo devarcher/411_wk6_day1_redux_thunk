@@ -1,6 +1,6 @@
 import React from "react";
 
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from "@material-ui/core/styles";
 
 import {
   Button,
@@ -9,34 +9,58 @@ import {
   TableBody,
   TableRow,
   TableCell,
-  Container,
+  Container
 } from "@material-ui/core";
 
+import DeleteForeverOutlinedIcon from "@material-ui/icons/DeleteForeverOutlined";
+
 const useStyles = makeStyles({
-  table: {
-    minWidth: 650,
+  wrapper: {
+    marginTop: "30px"
   },
+  importButton: {
+    marginBottom: "30px"
+  }
 });
 
-
 const Import = props => {
-  const classes = useStyles()
+  const classes = useStyles();
   return (
     <div>
       <Container className={classes.wrapper}>
-        <Button className={classes.importButton} variant="contained" color="primary">
+        <Button
+          onClick={props.fetchMakes}
+          className={classes.importButton}
+          variant="contained"
+          color="primary"
+        >
           Import
         </Button>
 
-          <Table className={classes.makesTable}>
-            <TableHead>
-              <TableRow>
-                <TableCell>ID</TableCell>
-                <TableCell>Make</TableCell>
-                <TableCell>Actions</TableCell>
+        <Table className={classes.makesTable}>
+          <TableHead>
+            <TableRow>
+              <TableCell>ID</TableCell>
+              <TableCell>Make</TableCell>
+              <TableCell>Actions</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {/* {console.log(props.makes)} */}
+            {props.makes.map(make => (
+              <TableRow key={make.MakeId}>
+                <TableCell>{make.MakeId}</TableCell>
+                <TableCell>{make.MakeName}</TableCell>
+                <TableCell>
+                  <DeleteForeverOutlinedIcon
+                    onClick={() => props.deleteMake(make.MakeId)}
+                    color="secondary"
+                  />
+                </TableCell>
               </TableRow>
-            </TableHead>
-          </Table>
+            ))}
+          </TableBody>
+        </Table>
       </Container>
     </div>
   );

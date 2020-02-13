@@ -15,6 +15,14 @@ export const removeCar = index => {
   };
 };
 
+export const deleteMake = MakeId => {
+  // console.log(MakeId)
+  return {
+    type: "DELETE_MAKE",
+    value: MakeId
+  };
+};
+
 export const fetchMakes = () => {
   return dispatch => {
     fetch(url)

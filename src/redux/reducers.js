@@ -20,6 +20,11 @@ const makes = (state = [], action) => {
     case "FETCH_MAKES":
       return action.value;
 
+    case "DELETE_MAKE":
+      const makes = [...state];
+      const newMakes = makes.filter(make => make.MakeId !== action.value);
+      return newMakes;
+
     default:
       return state;
   }
